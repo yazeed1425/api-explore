@@ -1,42 +1,7 @@
-# توثيق دورة CRUD الكاملة
+## Documenting 201 and 409 Status Codes
 
-تمت تجربة الأوامر بنجاح وتوثيق الاستجابات (Status Codes) الفعلية لكل خطوة كما يلي:
+### 1. First Attempt (201 Created)
+When sending the POST request for the first time, the server successfully creates the resource and returns a `201 Created` status code.
 
-## 1. إنشاء منشور جديد (POST)
-- **الأمر المُنفذ:**
-```bash
-curl -i -X POST https://masar-class-api.a-f-almatrafi.workers.dev/api/posts \
-  -H "Content-Type: application/json" \
-  -d '{"title": "استكشاف", "body": "دورة كاملة", "author": "اسمك"}'
-```
-- **رمز الحالة (Status Code):** `201 Created`
-
-## 2. قراءة المنشور (GET)
-- **الأمر المُنفذ:**
-```bash
-curl -i https://workers.dev
-```
-- **رمز الحالة (Status Code):** `200 OK`
-
-## 3. تعديل المنشور (PATCH)
-- **الأمر المُنفذ:**
-```bash
-curl -i -X PATCH https://workers.dev \
-  -H "Content-Type: application/json" \
-  -d '{"title": "استكشاف - معدل"}'
-```
-- **رمز الحالة (Status Code):** `200 OK`
-
-## 4. حذف المنشور (DELETE)
-- **الأمر المُنفذ:**
-```bash
-curl -i -X DELETE https://workers.dev
-```
-- **رمز الحالة (Status Code):** `200 OK`
-
-## 5. التحقق من الحذف (GET للتحقق)
-- **الأمر المُنفذ:**
-```bash
-curl -i https://workers.dev
-```
-- **رمز الحالة (Status Code):** `404 Not Found`
+### 2. Second Attempt (409 Conflict)
+When sending the exact same POST request again, the server rejects it because the username already exists, returning a `409 Conflict` status code. This means the request could not be completed due to a conflict with the current state of the target resource.
