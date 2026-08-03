@@ -1,0 +1,1 @@
+REST conventions and statelessness
